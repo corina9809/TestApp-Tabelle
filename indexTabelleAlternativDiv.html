@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            margin: 0 auto;
+        }
+
+        div.table {
+            display: table;
+            width: calc(100% - 10px);
+            border: 1px solid blue;
+            padding: 5px;
+        }
+
+        div.spalte {
+            display: table-cell;
+            border: thin solid red;
+            width: 200px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Raster-Layout display:table-cell</h1>
+<main>
+    <div class="table">
+        <div class="spalte">Ich bin eine Spalte.</div>
+        <div class="spalte">Ich bin eine zweite Spalte.</div>
+        <div class="spalte">Ich bin eine dritte Spalte mit noch mehr Inhalt.</div>
+        <div class="spalte">Ich bin eine vierte Spalte.
+            <br>
+            <br> Ein Vorteil von display:table ist, dass sich dass Layout der Spalten automatisch
+            an die Höhe der Spalten anpasst. </div>
+    </div>
+    <div class="table">
+        <div class="spalte">Ich bin eine Spalte.</div>
+        <div class="spalte">Ich bin eine zweite Spalte.</div>
+        <div class="spalte">Ich bin eine dritte Spalte mit noch mehr Inhalt.</div>
+        <div class="spalte">Ich bin eine vierte Spalte.
+            <br>
+            <br> Ein Vorteil von display:table ist, dass sich dass Layout der Spalten automatisch
+            an die Höhe der Spalten anpasst. </div>
+    </div>
+</main>
+
+</body>
+</html>

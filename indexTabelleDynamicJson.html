@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css" />
+
+</head>
+<body>
+
+<header>
+    <div class="grid">
+        <h1>
+            Beispiel Tabelle
+            <small>Automatisch mit JSON</small>
+        </h1>
+    </div>
+</header>
+<section class="body">
+    <div class="grid tCenter">
+        <h2>Create a dynamic table using json and javascript</h2>
+    </div>
+    <div class="grid tCenter">
+        <select id="myselect" onchange="change_myselect(this.value)">
+            <option value="">Choose an option:</option>
+            <option value="customers">Customers</option>
+            <option value="products">Products</option>
+            <option value="suppliers">Suppliers</option>
+        </select>
+        <input type="text" size="30" name="display" id="display" />
+
+        <button id="interaktiv">Klick mich!</button>
+        <button id="entferne">Entferne Event!</button>
+        <button id="loadtable">Tabelle!</button>
+        <button id="loaddyntable">Tabelle dynamisch!</button>
+
+    </div>
+    <div class="grid tCenter">
+        <!-- Div element to display result -->
+        <div id="myContacts">
+            <p>You have zero contacts</p>
+        </div>
+    </div>
+    <div class="grid tCenter">
+        <!-- Div element to display result -->
+        <div id="tablearea">
+        </div>
+    </div>
+</section>
+
+<output></output>
+
+<footer>
+    <div class="grid">
+        <p>
+            Made with Love </a>
+        </p>
+    </div>
+    <div class="inner">
+        <ul class="icons">
+            <li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+            <li><a href="#" class="icon style2 fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <p>&copy; Untitled. Design: <a href="https://html5up.net">HTML5</a>.</p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="js/dynamicTableJson.js"></script>
+<script src="js/generateTableFromJson.js"></script>
+<script src="js/readJsonFile.js"></script>
+
+</body>
+</html>

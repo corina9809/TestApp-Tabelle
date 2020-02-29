@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul {
+            display: table;
+            padding-left: 0;
+            font: 1.5em Candara;
+        }
+
+        li {
+            display: table-row;
+        }
+
+        li > * {
+            display: table-cell;
+            padding: 0 0.5em;
+        }
+
+        li >:first-child::before {
+            content: '•';
+            margin-right: 0.5em;
+        }
+
+        x-postal-code {
+            font-feature-settings: "tnum", "lnum";
+        }
+
+    </style>
+</head>
+<body>
+<h1>Raster-Layout display:table-cell</h1>
+<h1>Listen mit Tabellen-Look</h1>
+<ul>
+    <li>
+        <x-postal-code>40233</x-postal-code>
+        <x-locality>Düsseldorf</x-locality>
+        <x-location>Capitol-Theater</x-location>
+    </li>
+    <li>
+        <x-postal-code>10117</x-postal-code>
+        <x-locality>Berlin</x-locality>
+        <x-location>Admiralspalast</x-location>
+    </li>
+</ul>
+
+</body>
+</html>

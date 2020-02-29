@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <!--link rel="stylesheet" href="css/main.css"-->
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-reboot.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <!-- :::::: End of bootstrap css -->
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body class="bg-dark">
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3" id="first">
+                <div id="tip_calculator">
+                    <h4 style="text-align: center;">Beispiel Tabelle</h4>
+                    <br><small>Automatisch mit JSON</small>
+                    <div id="tip-calculator">
+                        <form>
+
+
+                            <div class="row">
+                                <center>
+                                <select id="myselect"  class="form-control" style="position: relative; top: 10px;" onchange="change_myselect(this.value)">
+                                    <option value="">Choose an option:</option>
+                                    <option value="customers">Customers</option>
+                                    <option value="products">Products</option>
+                                    <option value="suppliers">Suppliers</option>
+                                </select>
+                                <input type="text" class="form-control" style="position: relative; top: 10px;" size="30" name="display" id="display"/>
+                                </center>
+                            </div>
+                            <br> <br>
+
+
+                            <div class="row">
+                                <div class="col-md-6 offset-md-3">
+                                    <center>
+                                        <button id="loadtable" class="btn" type="button"><span>Tabelle!</span></button><br>
+                                        <button id="loaddyntable" class="btn"  type="button"><span>Tabelle dynamisch!</span></button>
+                                    </center>
+                                </div>
+                            </div> <br><br>
+
+
+
+                            <div class="grid tCenter">
+                                <!-- Div element to display result -->
+                                <div id="tablearea">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div><br><br>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Scripts -->
+<script src="js/dynamicTableJsonBootStr.js"></script>
+<script src="js/generateTableFromJson.js"></script>
+<script src="js/readJsonFile.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sortable Table</title>
+    <style>
+        html
+        {
+            font-family: "Fira Sans", Avenir, sans-serif;
+        }
+
+        table
+        {
+            border-collapse: collapse;
+        }
+
+        caption
+        {
+            padding: 0.5em;
+            text-align: left;
+        }
+
+        thead
+        {
+            background: hsl(220, 50%, 80%);
+        }
+
+        tbody tr:nth-child(even)
+        {
+            background: hsl(220, 50%, 95%);
+        }
+
+        th, td
+        {
+            border: 1px solid;
+            padding: 0.5em;
+            text-align: left;
+            vertical-align: top;
+            font-weight: normal;
+        }
+
+        th
+        {
+            position: relative;
+            padding-right: 2.5em;
+        }
+
+        [sorted]::after
+        {
+            content: "▼";
+            position: absolute;
+            right: 0.5em;
+        }
+
+        ::shadow button
+        {
+            border: none;
+            padding: 0;
+            width: 100%;
+            background: transparent;
+            font: inherit;
+            text-align: left;
+        }
+    </style>
+
+    <script>
+        var XSortableTableElementPrototype = Object.create(HTMLTableElement.prototype);
+
+        XSortableTableElementPrototype.createDataArray = function ()
+        {
+            this.tableData = [];
+
+            for (var i = 0; i < this.tBodies[0].rows.length; i++)
+            {
+                var currentRow = this.tBodies[0].rows[i];
+
+                this.tableData[i] = [];
+
+                for (var j = 0; j < currentRow.cells.length; j++)
+                {
+                    this.tableData[i][j] = currentRow.cells[j].textContent;
+                }
+            }
+        }
+
+        XSortableTableElementPrototype.refresh = function ()
+        {
+            for (var i = 0; i < this.tBodies[0].rows.length; i++)
+            {
+                var currentRow = this.tBodies[0].rows[i];
+
+                currentRow.cells[0].innerHTML = this.tableData[i][0];
+                currentRow.cells[1].innerHTML = '<time>' + this.tableData[i][1] + '</time>';
+            }
+        }
+
+        XSortableTableElementPrototype.sortArray = function (columnNumber)
+        {
+            function compare(a, b)
+            {
+                if (a[columnNumber].toLowerCase() < b[columnNumber].toLowerCase()) return -1;
+                if (a[columnNumber].toLowerCase() > b[columnNumber].toLowerCase()) return 1;
+                return 0;
+            }
+
+            this.tableData.sort(compare);
+            this.refresh();
+        }
+
+        XSortableTableElementPrototype.createTHeadCellButtons = function ()
+        {
+            var prototype = this;
+
+            var sortedColumn = null;
+
+            var thElements = this.tHead.rows[0].cells;
+
+            for (var i = 0; i < thElements.length; i++)
+            {
+                var root = thElements[i].createShadowRoot();
+
+                root.innerHTML = '<button><content></content></button>';
+
+                if (thElements[i].hasAttribute('sorted'))
+                {
+                    sortedColumn = i;
+                }
+            }
+
+            if (!isNaN(sortedColumn))
+            {
+                this.sortArray(sortedColumn);
+            }
+
+            this.tHead.addEventListener('click', function(event)
+            {
+                var sortedColumn;
+
+                if (event.target.nodeName === 'TH')
+                {
+                    for (var i = 0; i < thElements.length; i++)
+                    {
+                        if (thElements[i] === event.target)
+                        {
+                            thElements[i].setAttribute('sorted', 1);
+                            sortedColumn = i;
+                        }
+                        else
+                        {
+                            thElements[i].removeAttribute('sorted');
+                        }
+                    }
+
+                    prototype.sortArray(sortedColumn);
+                }
+            });
+        }
+
+        XSortableTableElementPrototype.createdCallback = function()
+        {
+            this.createDataArray();
+            this.createTHeadCellButtons();
+        }
+
+        var XSortableTableElement = document.registerElement('x-sortable-table', {
+            prototype: XSortableTableElementPrototype,
+            extends: 'table'
+        });
+
+    </script>
+</head>
+<body>
+
+<table sortable is="x-sortable-table">
+    <caption>Bruce Springsteen’s studio albums</caption>
+    <thead>
+    <tr>
+        <th>title</th>
+        <th sorted>release date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Greetings from Asbury Park, N.J.</td>
+        <td><time>1973-01-05</time></td>
+    </tr>
+    <tr>
+        <td>The Wild, the Innocent & the E Street Shuffle</td>
+        <td><time>1973-09-11</time></td>
+    </tr>
+    <tr>
+        <td>Born to Run</td>
+        <td><time>1975-08-25</time></td>
+    </tr>
+    <tr>
+        <td>Darkness on the Edge of Town</td>
+        <td><time>1978-06-02</time></td>
+    </tr>
+    <tr>
+        <td>The River</td>
+        <td><time>1980-10-10</time></td>
+    </tr>
+    <tr>
+        <td>Nebraska</td>
+        <td><time>1982-09-20</time></td>
+    </tr>
+    <tr>
+        <td>Born in the U.S.A.</td>
+        <td><time>1984-06-04</time></td>
+    </tr>
+    <tr>
+        <td>Tunnel of Love</td>
+        <td><time>1987-10-09</time></td>
+    </tr>
+    <tr>
+        <td>Human Touch</td>
+        <td><time>1992-03-31</time></td>
+    </tr>
+    <tr>
+        <td>Lucky Town</td>
+        <td><time>1992-03-31</time></td>
+    </tr>
+    <tr>
+        <td>The Ghost of Tom Joad</td>
+        <td><time>1995-11-21</time></td>
+    </tr>
+    <tr>
+        <td>The Rising</td>
+        <td><time>2002-07-30</time></td>
+    </tr>
+    <tr>
+        <td>Devils & Dust</td>
+        <td><time>2005-04-26</time></td>
+    </tr>
+    <tr>
+        <td>We Shall Overcome: The Seeger Sessions</td>
+        <td><time>2006-04-25</time></td>
+    </tr>
+    <tr>
+        <td>Magic</td>
+        <td><time>2007-09-25</time></td>
+    </tr>
+    <tr>
+        <td>Working on a Dream</td>
+        <td><time>2009-01-27</time></td>
+    </tr>
+    <tr>
+        <td>Wrecking Ball</td>
+        <td><time>2012-03-06</time></td>
+    </tr>
+    <tr>
+        <td>High Hopes</td>
+        <td><time>2014-01-14</time></td>
+    </tr>
+    <tr>
+        <td>Western Stars</td>
+        <td><time>2019-06-14</time></td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>
