@@ -1,0 +1,74 @@
+<html>
+<body>
+<p>JavaScript Example: Select an option from the dropdown list to "toggle" the DIV element!</p>
+<p>
+    <select id="sel" onchange="toggle()">
+        <option value="1" selected>Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+    </select>
+</p>
+
+<div id="cont"
+     style="display:block;
+        border:solid 1px #CCC;padding:10px;">
+
+    Name: <input type="text" id="name" />
+    Age: <input type="text" id="age" />
+
+
+    <table id = "t1" border="1">
+        <tr>
+            <th>Header 1</th>
+            <th>Header 2</th>
+        </tr>
+        <tr>
+            <td>row 1, cell 1</td>
+            <td>row 1, cell 2</td>
+        </tr>
+        <tr>
+            <td>row 2, cell 1</td>
+            <td>row 2, cell 2</td>
+        </tr>
+    </table>
+
+    <table id = "t2" border="1">
+        <tr>
+            <th> 1</th>
+            <th> 2</th>
+        </tr>
+        <tr>
+            <td> 1,  1</td>
+            <td> 1,  2</td>
+        </tr>
+        <tr>
+            <td> 2,  1</td>
+            <td> 2,  2</td>
+        </tr>
+    </table>
+</div>
+</body>
+<script>
+    function toggle() {
+
+        var cont = document.getElementById('cont');
+        if (cont.style.display == 'block') {
+            cont.style.display = 'none';
+
+            document.getElementById('t1').style.display = 'none';
+            document.getElementById('t2').style.display = 'none';
+            document.getElementById('t' + this.value).style.display = '';
+
+        }
+        else {
+            cont.style.display = 'block';
+            document.getElementById('t1').style.display = 'block';
+            document.getElementById('t2').style.display = 'block';
+        }
+
+
+
+
+    }
+</script>
+</html>
