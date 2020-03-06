@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // access text property of selected option
         el.value = tar.options[tar.selectedIndex].text;
         document.querySelector('#myselect').removeEventListener('click', klickverarbeitung);
-        document.querySelector('output').innerText += ' ' + tar.options[tar.selectedIndex].text + ' ausgewählt. \n';
+        document.querySelector('output').innerText += 'Text '+' ' + tar.options[tar.selectedIndex].text + ' und value: '+ tar.options[tar.selectedIndex].value  + '  ausgewählt. \n';
 
     }
 
