@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+
+main {
+	background: white;
+	border-color: #8a9da8;
+	height: 700px;
+	overflow: hidden;
+}
+
+table,
+th,
+td {
+	border: 1px solid blue;
+	border-collapse: collapse;
+	padding: 0.3em;
+}
+/* Zebra-Streifen für ungerade Zeilen */
+
+tr:nth-child(odd) {
+	background-color: #eee;
+}
+/* 2. und 3. Spalte rechtsbündig */
+
+td:nth-of-type(2),
+td:nth-of-type(3) {
+	text-align: right;
+}
+/*Markierung, dass Zeile ausgewählt ist */
+
+tr.markiert {
+	background-color: lime;
+}
+</style>
+
+<script>
+onload = function () {
+	var rows = document.getElementById('auswaehlbar')
+		.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+	for (i = 0; i < rows.length; i++) {
+		rows[i].addEventListener('click', function () {
+			this.classList.toggle('markiert');
+		});
+	}
+}
+</script>
+
+<body>
+<h1>Datensatzauswahl 2</h1>
+<main>
+    <p>Klicken Sie in eine Tabellenzelle um die ganze Tabellenzeile zu markieren.</p>
+    <p>Der Zeile wird eine Klasse hinzugefügt, die im CSS eine andere Hintergrundfarbe
+        erhält. Ein Klick auf markierte Zeilen entfernt diese Klasse wieder.</p>
+    <table
+            id="auswaehlbar">
+        <tbody>
+        <tr class="hintergrundfarbe5">
+            <th>Land</th>
+            <th>Fläche
+                <br /> (km²)</th>
+            <th>Einwohner
+                <br /> (Mio.)</th>
+        </tr>
+        <tr>
+            <td>Baden-Württemberg</td>
+            <td>35.751</td>
+            <td>10,631</td>
+        </tr>
+        <tr>
+            <td>Bayern</td>
+            <td>70.550</td>
+            <td>12,604</td>
+        </tr>
+        <tr>
+            <td>Berlin</td>
+            <td>892</td>
+            <td>3,422</td>
+        </tr>
+        <tr>
+            <td>Brandenburg</td>
+            <td>29.654</td>
+            <td>2,449</td>
+        </tr>
+        <tr>
+            <td>Bremen</td>
+            <td>419</td>
+            <td>0,657</td>
+        </tr>
+        <tr>
+            <td>Hamburg</td>
+            <td>755</td>
+            <td>1,746</td>
+        </tr>
+        <tr>
+            <td>Hessen</td>
+            <td>21.115</td>
+            <td>6,045</td>
+        </tr>
+        <tr>
+            <td>Mecklenburg-Vorpommern</td>
+            <td>23.212</td>
+            <td>1,597</td>
+        </tr>
+        <tr>
+            <td>Niedersachsen</td>
+            <td>47.613</td>
+            <td>7,791</td>
+        </tr>
+        <tr>
+            <td>Nordrhein-Westfalen</td>
+            <td>34.110</td>
+            <td>17,572</td>
+        </tr>
+        <tr>
+            <td>Rheinland-Pfalz</td>
+            <td>19.854</td>
+            <td>3,994</td>
+        </tr>
+        <tr>
+            <td>Saarland</td>
+            <td>2.569</td>
+            <td>0,991</td>
+        </tr>
+        <tr>
+            <td>Sachsen</td>
+            <td>18.420</td>
+            <td>4,046</td>
+        </tr>
+        <tr>
+            <td>Sachsen-Anhalt</td>
+            <td>20.452</td>
+            <td>2,245</td>
+        </tr>
+        <tr>
+            <td>Schleswig-Holstein</td>
+            <td>15.800</td>
+            <td>2,816</td>
+        </tr>
+        <tr>
+            <td>Thüringen</td>
+            <td>16.173</td>
+            <td>2,161</td>
+        </tr>
+        <tr class="sortbottom hintergrundfarbe5">
+            <td><b>Bundesrepublik Deutschland</b> (DE)</td>
+            <td><b>357.340</b>
+            </td>
+            <td><b>80,767</b>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>Quelle: <a href="https://de.wikipedia.org/wiki/Land_%28Deutschland%29#Rahmendaten_der_L.C3.A4nder">Wikipedia</a>
+    </p>
+</main>
+
+</body>
+</html>
+If you are using a framework like jQuery
+</html>
