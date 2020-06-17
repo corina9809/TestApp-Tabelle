@@ -42,15 +42,7 @@
             border-bottom: 2px solid #009879;
         }
 
-         .content-table tbody tr:hover,
-         .content-table tfoot tr:hover {
-             background-color: cornflowerblue;
-         }
 
-         .content-table tbody td:hover,
-         .content-table tfoot td:hover {
-             background-color: gold;
-         }
 
     </style>
 </head>
@@ -66,7 +58,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr data-href="http://www.google.de">
+    <tr onclick="this.style.backgroundColor = '#ff0000'">
         <td>1</td>
         <td>Domenic</td>
         <td>88,110</td>
@@ -88,19 +80,16 @@
 </table>
 
 <script>
+    function cellColor() {
+        var cells = document.getElementsByClass('content-table');
+        for (var i = 0; i < cells.length; i++) {
+            cells.attachEventListener("click", setBackgroundColor);
+        }
+    }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const rows = document.querySelectorAll("tr[data-href]");
-        rows.forEach(row => {
-            row.addEventListener("click", ()=>{
-                window.location.href = row.dataset.href;
-            })
-            }
-
-        );
-    });
-
-
+    function setBackgroundColor() {
+        this.style.backgroundColor = 'green';
+    }
 </script>
 
 </body>
